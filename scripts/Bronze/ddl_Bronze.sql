@@ -1,103 +1,7 @@
 USE [master]
 GO
-/****** Object:  Database [DataWarehouse]    Script Date: 02/03/2026 01:11:13 ******/
 CREATE DATABASE [DataWarehouse]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'DataWarehouse', FILENAME = N'D:\Sql_Server\MSSQL17.SQLEXPRESS\MSSQL\DATA\DataWarehouse.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'DataWarehouse_log', FILENAME = N'D:\Sql_Server\MSSQL17.SQLEXPRESS\MSSQL\DATA\DataWarehouse_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
-GO
-ALTER DATABASE [DataWarehouse] SET COMPATIBILITY_LEVEL = 170
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [DataWarehouse].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [DataWarehouse] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET AUTO_CLOSE ON 
-GO
-ALTER DATABASE [DataWarehouse] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [DataWarehouse] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [DataWarehouse] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET  ENABLE_BROKER 
-GO
-ALTER DATABASE [DataWarehouse] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [DataWarehouse] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [DataWarehouse] SET  MULTI_USER 
-GO
-ALTER DATABASE [DataWarehouse] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [DataWarehouse] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [DataWarehouse] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [DataWarehouse] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [DataWarehouse] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
-ALTER DATABASE [DataWarehouse] SET OPTIMIZED_LOCKING = OFF 
-GO
-ALTER DATABASE [DataWarehouse] SET QUERY_STORE = ON
-GO
-ALTER DATABASE [DataWarehouse] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
-GO
-USE [DataWarehouse]
-GO
-/****** Object:  Schema [bronze]    Script Date: 02/03/2026 01:11:14 ******/
-CREATE SCHEMA [bronze]
-GO
-/****** Object:  Schema [Gold]    Script Date: 02/03/2026 01:11:14 ******/
-CREATE SCHEMA [Gold]
-GO
-/****** Object:  Schema [Silver]    Script Date: 02/03/2026 01:11:14 ******/
-CREATE SCHEMA [Silver]
-GO
-/****** Object:  Table [bronze].[crm_cust_info]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[crm_cust_info](
 	[cst_id] [int] NULL,
 	[cst_key] [nvarchar](50) NULL,
@@ -106,13 +10,7 @@ CREATE TABLE [bronze].[crm_cust_info](
 	[cst_marital_status] [nvarchar](50) NULL,
 	[cst_gndr] [nvarchar](50) NULL,
 	[cst_create_date] [date] NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [bronze].[crm_prd_info]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[crm_prd_info](
 	[prd_id] [int] NULL,
 	[prd_key] [nvarchar](50) NULL,
@@ -121,13 +19,7 @@ CREATE TABLE [bronze].[crm_prd_info](
 	[prd_line] [nvarchar](50) NULL,
 	[prd_start_date] [datetime] NULL,
 	[prd_end_date] [datetime] NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [bronze].[crm_sales_details]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[crm_sales_details](
 	[sls_ord_num] [nvarchar](50) NULL,
 	[sls_prd_key] [nvarchar](50) NULL,
@@ -138,46 +30,22 @@ CREATE TABLE [bronze].[crm_sales_details](
 	[sls_sales] [int] NULL,
 	[sls_quantity] [int] NULL,
 	[sls_price] [int] NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [bronze].[erp_CUST_AZ12]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[erp_CUST_AZ12](
 	[CID] [nvarchar](50) NULL,
 	[BDATE] [date] NULL,
 	[GEN] [nvarchar](50) NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [bronze].[erp_LOC_A101]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[erp_LOC_A101](
 	[CID] [nvarchar](50) NULL,
 	[CNTRY] [nvarchar](50) NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [bronze].[erp_PX_CAT_G1V2]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE TABLE [bronze].[erp_PX_CAT_G1V2](
 	[ID] [nvarchar](50) NULL,
 	[CAT] [nvarchar](50) NULL,
 	[SUBCAT] [nvarchar](50) NULL,
 	[MAINTENANCE] [nvarchar](50) NULL
-) ON [PRIMARY]
-GO
-/****** Object:  StoredProcedure [bronze].[load_bronze]    Script Date: 02/03/2026 01:11:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 CREATE   PROCEDURE [bronze].[load_bronze] AS
 BEGIN
 	DECLARE @Start_time DATETIME,
