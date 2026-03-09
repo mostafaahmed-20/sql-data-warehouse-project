@@ -40,7 +40,6 @@ Customer Behavior.
 Product Performance.
 Sales Trend.
 Product Analysis: Profitability per category.
-تك وتضيفهم للبوست:
 
 💡 Key Insights from the Project:
 Revenue Concentration: Discovering that the Bikes category is the primary revenue driver, accounting for over 96% of total sales (approximately $28.32M).
