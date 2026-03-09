@@ -40,6 +40,14 @@ Customer Behavior.
 Product Performance.
 Sales Trend.
 Product Analysis: Profitability per category.
+تك وتضيفهم للبوست:
+
+💡 Key Insights from the Project:
+Revenue Concentration: Discovering that the Bikes category is the primary revenue driver, accounting for over 96% of total sales (approximately $28.32M).
+
+Market Performance: Identified the United States and Australia as the top-performing markets, contributing nearly $18.3M in combined sales.
+
+Growth Trajectory: Successfully tracked a massive profit surge, with a 122.7% increase compared to the previous year, highlighting a strong upward growth trend.
 
 ## 🙋‍♂️ About Me
 Hi There! i'am Mostafa, a passionate Data Engineer and Analytics Specialist with a strong focus on building scalable data architectures and transforming raw data into actionable business insights.
